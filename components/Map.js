@@ -6,10 +6,11 @@ import {DataContext} from './Context'
 
 
 export default function Map({ navigation }) {
-
-  const {places, region, setRegion} = useContext(DataContext)
+  // useContext reads the context and subscribes to its changes
+  const {places, region} = useContext(DataContext)
   console.log(places)
 
+  // returning the map and markers for each venue
   return (
     <SafeAreaView style={styles.container}>
       <Button

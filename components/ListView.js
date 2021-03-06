@@ -4,9 +4,10 @@ import { StyleSheet, Text, View, FlatList, Button, ActivityIndicator, SafeAreaVi
 import {DataContext} from './Context'
 
 export default function ListView({ navigation }) {
- 
+    // useContext reads the context and subscribes to its changes
     const {places, setPlaces, region, setRegion} = useContext(DataContext)
     
+    // Constructing each item for the FlatList
     const Item = ({ item }) => (
       <View style={styles.item}>
         <Text style={styles.name}>{item.name}</Text>
@@ -16,17 +17,20 @@ export default function ListView({ navigation }) {
         </View>
         <View style={styles.info}>
           <Text style={styles.type}>Type: {item.type}</Text>
-          <Text style={styles.distance}>Distance: {Math.round(item.distance * 10) / 10} km</Text>
+          <Text style={styles.distance}>Distance: {Math.round(item.distance / 100) / 10} km</Text>
         </View>
       </View>
     );
-    
+
+    // Rendering the item
     const renderItem = ({ item }) => (
       <Item 
         item={item}
         title={item.name} />
     );
-  
+    
+    // Returning the list if the places array does exist and its 
+    // lenght is larger then 0, else returning the activity indicator.
     return (
       <SafeAreaView style={styles.container}>
          <Button
@@ -74,9 +78,10 @@ const styles = StyleSheet.create({
       shadowRadius: 3.84,
       elevation: 5,
           },
-          name: {
-            fontSize: 32,
-          },
+      name: {
+        fontSize: 28,
+        marginBottom: 8,
+      },
       info: {
         alignSelf: 'flex-end',
         marginTop: 12

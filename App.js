@@ -7,9 +7,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {DataProvider} from './components/Context';
 
+// Creating the stack navigator for routing
 const Stack = createStackNavigator();
 
 export default function App() {
+  // Returning navigation routes and wrapping them with the DataProvider 
+  // to provide the context value
   return (
     <NavigationContainer>
        <DataProvider>
